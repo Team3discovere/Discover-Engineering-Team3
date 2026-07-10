@@ -14,7 +14,6 @@
 </head>
 <body class="bg-stone-50 min-h-screen flex flex-col">
 
-    <!-- Header -->
     <header class="bg-[#990000] text-white py-4 px-6 shadow-md flex justify-between items-center">
         <div class="flex items-center gap-3">
             <i class="fa-solid fa-graduation-cap text-2xl text-[#FFC72C]"></i>
@@ -28,10 +27,8 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="flex-grow max-w-4xl w-full mx-auto p-4 flex flex-col gap-4">
 
-        <!-- API Key Input Panel -->
         <div class="bg-white border border-stone-200 rounded-xl p-4 shadow-sm">
             <h2 class="text-sm font-semibold text-stone-700 mb-2 flex items-center gap-2">
                 <i class="fa-solid fa-key text-amber-500"></i> Setup Local Credentials
@@ -55,35 +52,31 @@
             </p>
         </div>
 
-        <!-- Chat Window -->
         <div class="flex-grow bg-white border border-stone-200 rounded-xl shadow-md flex flex-col overflow-hidden min-h-[400px]">
 
-            <!-- Bot Header -->
             <div class="bg-stone-50 border-b border-stone-200 px-6 py-4 flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-[#990000]/10 flex items-center justify-center text-[#990000]">
                     <i id="botIcon" class="fa-solid fa-robot text-lg"></i>
                 </div>
                 <div>
-                    <h2 id="botTitle" class="font-bold text-stone-800 text-base">CivicBot (Civil &amp; Env.)</h2>
+                    <h2 id="botTitle" class="font-bold text-stone-800 text-base">ClankerBot</h2>
                     <span class="text-xs text-green-600 font-semibold flex items-center gap-1">
                         <span class="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse"></span> Active
                     </span>
                 </div>
             </div>
 
-            <!-- Message Area -->
             <div id="chatHistory" class="flex-grow p-6 overflow-y-auto space-y-4 max-h-[380px]">
                 <div class="flex gap-3 max-w-[80%]">
                     <div class="w-8 h-8 rounded-full bg-[#990000]/10 flex items-center justify-center text-[#990000] shrink-0">
                         <i class="fa-solid fa-robot text-sm"></i>
                     </div>
                     <div class="bg-stone-100 text-stone-800 p-3.5 rounded-2xl rounded-tl-none text-sm">
-                        Fight On! I am your team's engineering advisor bot. Paste your API key above, then ask me anything about our field.
+                        Fight On! I am ClankerBot, your master engineering advisor. Ask me anything about our project areas across Computer Science, Civil, Environmental, Biomedical, or Electrical Engineering!
                     </div>
                 </div>
             </div>
 
-            <!-- Input Bar -->
             <div class="border-t border-stone-200 p-4 bg-stone-50 flex gap-2">
                 <input
                     type="text"
@@ -102,45 +95,27 @@
         </div>
     </main>
 
-   <script>
+    <script>
         // ==========================
         // EDIT THIS SECTION WEEKLY
         // ==========================
         const BOT_CONFIG = {
-            title: "ClankerBot (Week 1 -> Week 3)",
+            title: "ClankerBot (Weeks 1-3 Combined)",
             iconClass: "fa-solid fa-helmet-safety",
 
-            systemPrompt: `You are ClankerBot, a friendly and witty computer scientist at
-USC Viterbi.
-You love algorithms, Python, machine learning, and Arduino robotics. You
-explain
-technical ideas in a way that makes them exciting for high school
-students.
-You also know that for this week, our projects included a Zumi AI robot that navigates a damaged building, a Tamiya tracked vehicle that navigates a course that simulates exiting a damaged building, an Arudino based line tracker robot that avoids obstacles, an AI based humanoid robot that locates victims in a damaged building, and a VEX IQ system that autonomously creates GAK, whenever the user asks a question, you should reference one of these 5 projects as an example in the answer to their question (for instance, if they add something about AI, you should reference the Zumi AI robot and how the robot serves as an example to the answer of their question)
-If asked questions regarding anything outside of your expertise (your expertise is Computer Engineering, Mechanical Engineering, AI and Robotics), say that you are unable to answer this question and suggest an alternative area to explore
-Keep answers to 3 short paragraphs but extend the answers if necessary. End every response with: Fight On!
-            
-You are also an enthusiastic and knowledgeable AI guide for Civil and Environmental Engineering at USC Viterbi. Your role is to help high school students understand civil and environmental engineering concepts in a clear, friendly, accurate, and exciting way.
+            // Cleaned up, unified system prompt to stop the AI from getting confused or cutting off
+            systemPrompt: `You are ClankerBot, a friendly, witty, and high-energy engineering advisor for high school students at the USC Viterbi Discover Engineering program. You possess combined expertise across multiple fields from Weeks 1, 2, and 3: Computer Science/Robotics, Civil/Environmental Engineering, and Biomedical/Electrical Engineering.
 
-Focus only on Civil and Environmental Engineering topics, including bridges, buildings, structural design, earthquakes, transportation systems, construction materials, water treatment, wastewater systems, sustainability, green infrastructure, renewable energy infrastructure, climate resilience, and how engineering improves communities.
+When answering questions, smoothly adapt your response based on what the user asks, keeping your explanations clear, structured, and easy to read using normal paragraphs (do not explicitly type labels like "Para 1" or "Paragraph 2").
 
-When explaining concepts, be specific and detailed enough for a high school student to truly understand. Use step-by-step explanations, real-world examples, simple analogies, and engineering vocabulary with brief definitions. Explain the reasoning behind engineering decisions, including safety, cost, materials, environmental impact, and community needs.
+Follow these specific domain guidelines depending on the topic:
+1. For Computer Science, Mechanical Engineering, AI, and Robotics: Explain concepts excitedly. You must reference one of these 5 specific projects as an example in your answer: a Zumi AI robot navigating a damaged building, a Tamiya tracked vehicle exiting a simulated damaged building, an Arduino-based line tracker robot avoiding obstacles, an AI-based humanoid robot locating victims, or a VEX IQ system autonomously creating GAK.
+2. For Civil and Environmental Engineering: Provide detailed, step-by-step explanations using real-world examples, simple analogies, and clear engineering definitions. Explain the reasoning behind engineering decisions, including safety, cost, materials, environmental impact, and community needs.
+3. For Biomedical and Electrical Engineering: Explain concepts like pacemakers, prosthetics, medical sensors, or digital circuits. For mathematical or calculation questions, provide clear, step-by-step solutions.
 
-If a user asks about something outside Civil or Environmental Engineering, do not answer the question directly. Politely say that you are unable to answer because it is outside your Civil and Environmental Engineering focus. Then suggest a closer engineering-related alternative question. For example, redirect medical questions toward hospital infrastructure, sanitation, clean water, or air quality; redirect computer science questions toward smart cities, traffic systems, environmental sensors, or structural simulations; redirect business questions toward construction project planning, sustainable development, or infrastructure costs.
+General Rules: Keep responses organized, detailed but understandable, usually spanning 3 to 4 short paragraphs. If a user asks a question completely unrelated to Civil, Environmental, Biomedical, Electrical, CS, Robotics, Computer, or Mechanical Engineering, politely inform them that you cannot answer their question and suggest a related engineering topic to explore. 
 
-Keep responses organized and easy to read. Use short paragraphs, bullet points, or numbered steps when helpful. Aim for detailed but understandable explanations, usually around 3 paragraphs. End every response with: Fight On!
-
-            You are also an expert in Biomedical and Electrical Engineering at USC Viterbi. You explain concepts like pacemakers, prosthetics, medical
-sensors,
-and digital circuits in a way high school students can understand. You are
-high-energy
-and scientific but never talk down to people. Focus on how engineering
-saves lives.
-When asked questions related to factual information, provide accurate and concise answers. If you don't know the answer, say "I can't provide an accurate response for this question.", and suggest a related topic.
-If prompted regarding mathematical responses such as calculations, formulas, or equations, provide a step-by-step solution with clear explanations while keeping it concise. Also make sure equations/formulas are written with LaTeX formatting.
-Keep answers to 3 short paragraphs, add a fourth paragraph at then end that applies the knowledge of the answer to the clients answer and ask follow-up questions.
-You are able to decrease the amount of paragraphs if necessary. End every response with: Fight On!
-If you're asked a question not related to Civil, Environmental, Biomedical, Electrical, CS, Robotics, Computer, or Mechanical Engineering, politely inform the user that you are not able to answer their question.`
+End every single response with exactly: Fight On!`
         };
         // ==========================
         // END OF EDITABLE SECTION
@@ -188,7 +163,7 @@ If you're asked a question not related to Civil, Environmental, Biomedical, Elec
 
             try {
                 const response = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
                     {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -200,7 +175,7 @@ If you're asked a question not related to Civil, Environmental, Biomedical, Elec
                                 parts: [{ text: BOT_CONFIG.systemPrompt }]
                             },
                             generationConfig: {
-                                maxOutputTokens: 500,
+                                maxOutputTokens: 2000, // Expanded space so long text never truncates
                                 temperature: 0.7
                             }
                         })
@@ -208,7 +183,10 @@ If you're asked a question not related to Civil, Environmental, Biomedical, Elec
                 );
 
                 const data = await response.json();
-                document.getElementById(loadingId).remove();
+                
+                // Remove the loading indicator safely using its guaranteed unique ID
+                const loadingEl = document.getElementById(loadingId);
+                if (loadingEl) loadingEl.remove();
 
                 if (response.ok) {
                     const replyText = data.candidates[0].content.parts[0].text;
@@ -219,7 +197,8 @@ If you're asked a question not related to Civil, Environmental, Biomedical, Elec
                 }
 
             } catch (err) {
-                document.getElementById(loadingId).remove();
+                const loadingEl = document.getElementById(loadingId);
+                if (loadingEl) loadingEl.remove();
                 appendMessage('Connection error: ' + err.message, 'error');
             }
         }
@@ -227,7 +206,9 @@ If you're asked a question not related to Civil, Environmental, Biomedical, Elec
         // Render a message bubble
         function appendMessage(text, sender) {
             const chatHistory = document.getElementById('chatHistory');
-            const id = 'bubble-' + Date.now();
+            
+            // Appending a distinct random tail ensures asynchronous messages never crash on shared IDs
+            const id = 'bubble-' + Date.now() + '-' + Math.floor(Math.random() * 100000);
             const div = document.createElement('div');
             div.id = id;
 
